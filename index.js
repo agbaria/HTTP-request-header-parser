@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
 
+app.set("port", (process.env.PORT || 8080));
+
 app.get('/', function(req, res) {
     var header = req.headers;
     var ans = {"ipaddress": null, 'language': null, 'software': null};
@@ -39,6 +41,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(8080, function() {
-    console.log('express app listening on port 8080!');
+app.listen(app.get("port"), function() {
+    console.log('express app listening on port ', app.get("port"));
 });
